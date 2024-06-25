@@ -5,7 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TO DO Liste</title>
   </head>
+
   <body>
+
+    <div class="menuButton">
+      <button>=</button>
+    </div>
+    <aside>
+      <input type="button" value="X">
+      <ul>
+        <li>Today Todo</li>
+        <li>Todo for 7 days</li>
+        <li><details>
+          <summary>Personalized Todo</summary>
+          <p>Fashion</p>
+          <p>course</p>
+        </details>
+      </li>
+      </ul>
+      <button class="showPersonalized"></button>
+    </aside>
+
+    <dialog class="dialogPersonalized">
+      <form method="post">
+        <label for="nameTheme">Name of personalized theme</label>
+        <input type="text" name="nameTheme" id="nameTheme">
+      </form>
+    </dialog>
+
     <script src="./bundle.js"></script>
   </body>
 </html>
