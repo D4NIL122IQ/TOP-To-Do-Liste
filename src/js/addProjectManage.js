@@ -1,6 +1,6 @@
 import '../css/styleAddProject.css'
-import './addTodo.js'
-
+import  {ShowDialogTodo} from'./addTodo.js'
+import imgAddTodo from '../assets/addTodo.png'
 const addIntoDetails = document.querySelector('details')
 const btnCloseAddProject = document.querySelector('.btnClose')
 const allForm = document.querySelectorAll('form')
@@ -93,6 +93,7 @@ btnOpenAddProjectDialog.addEventListener('click', ()=>{
 
 function deleteProject(nameProject){
     projects = projects.filter((project)=> project!= nameProject)
+    localStorage.removeItem(nameProject)
     updateLocalStorage()
 }
 
@@ -120,10 +121,14 @@ function setupProjectContainer(name){
 
     let ContainerBtnAddTodo =document.createElement('div')
     ContainerBtnAddTodo.classList.add('addTodo')
-    
+    let imgAdd = document.createElement('img')
+    imgAdd.src = imgAddTodo
+    imgAdd.width =80
+    imgAdd.height = 80
+
     let btnAddTodo =document.createElement('btn')
     btnAddTodo.classList.add('btnAddTodo')
-    btnAddTodo.textContent = "hello"
+
 
     let divContainTodo = document.createElement('div')
     divContainTodo.classList.add('todoContainer')
@@ -134,6 +139,9 @@ function setupProjectContainer(name){
     container.appendChild(ContainerName)
     container.appendChild(divContainTodo)
     container.appendChild(ContainerBtnAddTodo)
+
+    const btnShowDialogTodo = document.querySelector('.btnAddTodo')
+    btnShowDialogTodo.addEventListener('click' , ShowDialogTodo)
     
 }
 

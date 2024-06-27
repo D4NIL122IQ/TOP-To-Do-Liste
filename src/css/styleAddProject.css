@@ -1,0 +1,52 @@
+.dialogAddProject{
+    width: 600px;
+    height: 300px;
+    margin: 150px auto;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.dialogAddProject > form{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: 0px auto;
+}
+
+.btnClose{
+
+    display: flex;
+    justify-content: end;
+}
+.closeAddProject{
+    background-image: url(../assets/close.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 40px;
+    width: 40px;
+    border: 0px solid transparent;
+    border-radius: 40px;
+}
+
+.closeAddProject:hover{
+    box-shadow: 0px 0px 10px blue;
+}
+
+.divProject{
+    display: flex;
+    justify-content: space-between;
+}
+
+.brnDeletProject{
+    height: 20px;
+    width: 20px;
+    border: 0px solid transparent;
+    background-image: url(../assets/delete.png);
+    background-position: center;
+    background-size: contain;
+}
+
+.brnDeletProject:hover{
+    box-shadow: 0px 0px 10px black;
+}
