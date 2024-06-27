@@ -1,0 +1,80 @@
+*,
+::after,
+::before {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body{
+    display: flex;
+}
+
+
+aside{
+    width: 20vw;
+    height: 100vh ;
+    padding: 30px;
+    gap: 10px;
+    background-color: beige;
+    font-size: larger;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+aside>ul{
+    overflow-y: auto;
+}
+aside>ul>li{
+    cursor: pointer;
+    list-style: none;
+    margin: 10px;
+}
+
+aside>input[type="button"]{
+    display: none;
+}
+
+
+aside>details>p{
+    margin-left: 20px;
+}
+
+
+.addProject{
+    display: flex;
+    align-items:center;
+    justify-content: end;
+    cursor: pointer;
+}
+
+.showPersonalized{
+    background-image: url(./assets/addPersonalized.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 25px;
+    width: 25px;
+    border: 0px solid transparent;
+    margin-right: 5px;
+}
+
+.menuButton{
+    display: none;
+}
+
+.containerTodo{
+    background-color:rgb(36, 102, 89);
+    width: 80vw;
+}
+
+@media screen and (max-width:600px) {
+    aside{
+        display: none;
+    }
+    .menuButton{
+        display: inline;
+
+    }
+}
