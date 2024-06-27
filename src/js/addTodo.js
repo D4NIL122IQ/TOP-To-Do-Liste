@@ -1,7 +1,10 @@
 import '../css/styleAddTodo.css'
 
-const btnOpenDialogTodo = document.querySelector('btnOpenTodo')
+
 const dialogTodo = document.querySelector('.dialogTodo')
+const btnCloseDialogTodo = document.querySelector('.closeAddTodo')
+const formDialog = document.querySelectorAll('form')
+
 
 
 class todoliste{
@@ -20,6 +23,16 @@ class todoliste{
         // let
     }
 }
+
+
+btnCloseDialogTodo.addEventListener('click',()=>{
+    dialogTodo.close()
+})
+
+formDialog[1].addEventListener('submit',()=>{
+    console.log('hello')
+})
+
 
 
 function ShowDialogTodo(){
