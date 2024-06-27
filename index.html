@@ -11,28 +11,60 @@
     <div class="menuButton">
       <button>=</button>
     </div>
+
     <aside>
       <input type="button" value="X">
       <ul>
         <li>Today Todo</li>
-        <li>Todo for 7 days</li>
+        <li>Todo for the week</li>
         <li><details>
           <summary>Personalized Todo</summary>
-          <p>Fashion</p>
-          <p>course</p>
+          
         </details>
       </li>
       </ul>
-      <button class="showPersonalized"></button>
+      <div class="addProject">
+        <button class="showPersonalized"></button>
+        <h4>New project</h4>
+      </div>
     </aside>
 
-    <dialog class="dialogPersonalized">
-      <form method="post">
+    <dialog class="dialogAddProject">
+      <div class="btnClose">
+        <button type="button" class="closeAddProject"></button>
+      </div>
+      <form method="dialog" class="formAddProject"> 
         <label for="nameTheme">Name of personalized theme</label>
-        <input type="text" name="nameTheme" id="nameTheme">
+        <input type="text" name="nameTheme" id="nameTheme" required>
+        <input type="submit" value="Valider">
       </form>
     </dialog>
 
+    <dialog class="dialogTodo">
+      <div class="btnClose">
+        <button type="button" class="closeAddProject"></button>
+      </div>
+      <form action="dialog">
+        <label for="nameTodo">Name of todo</label>
+        <input type="text" name="nameTodo" id="nameTodo">
+        <label for="dateTodo">enter date</label>
+        <input type="date" name="dateTodo" id="dateTodo">
+        <label for="importance">Importance de la tache</label>
+        <div class="importance">
+        <input type="radio" name="importance" id="high">
+        <label for="high">haute</label>
+        <input type="radio" name="importance" id="mid">
+        <label for="mid">moyenne</label>
+        <input type="radio" name="importance" id="low">
+        <label for="low">basse</label>
+      </div>
+        <input type="submit" value="Enregistrer">
+      </form>
+    </dialog>
+
+    <div class="containerTodo">
+      <p class="">hello</p>
+    </div>
     <script src="./bundle.js"></script>
   </body>
 </html>
