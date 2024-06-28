@@ -18,4 +18,14 @@ document.querySelector('input[type="button"]').addEventListener('click', ()=>{
 })
 
 
+function removeAllEventListeners(elements) {
+    elements.forEach((element) => {
+
+        const newElement = element.cloneNode(true);
+        element.parentNode.replaceChild(newElement, element);
+    });
+}
+
+export {removeAllEventListeners}
+
 
