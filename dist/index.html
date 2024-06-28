@@ -42,27 +42,27 @@
 
     <dialog class="dialogTodo">
       <div class="btnClose">
-        <button type="button" class="closeAddProject"></button>
+        <button type="button" class="closeAddTodo"></button>
       </div>
-      <form action="dialog">
+      <form method="dialog">
         <label for="nameTodo">Name of todo</label>
         <input type="text" name="nameTodo" id="nameTodo">
         <label for="dateTodo">enter date</label>
         <input type="date" name="dateTodo" id="dateTodo">
         <label for="importance">Importance de la tache</label>
         <div class="importance">
-        <input type="radio" name="importance" id="high">
+        <input type="radio" name="importance" id="high" value="high">
         <label for="high">haute</label>
-        <input type="radio" name="importance" id="mid">
+        <input type="radio" name="importance" id="mid" value="mid">
         <label for="mid">moyenne</label>
-        <input type="radio" name="importance" id="low">
+        <input type="radio" name="importance" id="low" value="low">
         <label for="low">basse</label>
       </div>
         <input type="submit" value="Enregistrer">
       </form>
     </dialog>
 
-    <div class="containerTodo">
+    <div class="containerTodo projectName">
       <p class="">hello</p>
     </div>
     <script src="./bundle.js"></script>
