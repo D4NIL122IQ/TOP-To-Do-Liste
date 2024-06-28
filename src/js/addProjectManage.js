@@ -1,5 +1,6 @@
 import '../css/styleAddProject.css'
-import  {ShowDialogTodo} from'./addTodo.js'
+import  {ShowDialogTodo , getTodoFromStorage} from'./addTodo.js'
+import {removeAllEventListeners} from '../index.js'
 import imgAddTodo from '../assets/addTodo.png'
 const addIntoDetails = document.querySelector('details')
 const btnCloseAddProject = document.querySelector('.btnClose')
@@ -49,17 +50,24 @@ function addProjectIntoDetails(projectName){
 
     addProjectCardIntoLocalStorage(projectName)
 
-
+    //on sup les ecouteurs precedent (ca cause le double click)
     const allProject = document.querySelectorAll('p')
-    allProject.forEach((project)=>{
+    removeAllEventListeners(allProject)
+
+    const allProjects = document.querySelectorAll('p')
+
+    allProjects.forEach((project)=>{
         project.addEventListener('click' , ()=>{
             setupProjectContainer(project.className)
         })
     })
     
+    //meme chose on sup les ecouteur precedent
     const allBtnDeletProject = document.querySelectorAll('.brnDeletProject')
+    removeAllEventListeners(allBtnDeletProject)
 
-    allBtnDeletProject.forEach((btn)=>{
+    const allBtnDeletProjects = document.querySelectorAll('.brnDeletProject')
+    allBtnDeletProjects.forEach((btn)=>{
         btn.addEventListener('click' , ()=>{
             deleteProject(btn.classList[1])
             addIntoDetails.removeChild(btn.parentElement)
@@ -107,8 +115,15 @@ function updateLocalStorage(){
 }
 
 function addProjectCardIntoLocalStorage(projectName){
-    localStorage.setItem(projectName, JSON.stringify())
+    const recup = localStorage.getItem(projectName)
+    if (!recup) {
+        localStorage.setItem(projectName, JSON.stringify([]))
+    }
+   
 }
+
+
+
 
 
 function setupProjectContainer(name){
@@ -123,24 +138,38 @@ function setupProjectContainer(name){
     ContainerBtnAddTodo.classList.add('addTodo')
     let imgAdd = document.createElement('img')
     imgAdd.src = imgAddTodo
-    imgAdd.width =80
-    imgAdd.height = 80
+    imgAdd.width =50
+    imgAdd.height = 50
 
+    let h3 = document.createElement('h3')
+    h3.textContent ="add Todo"
     let btnAddTodo =document.createElement('btn')
     btnAddTodo.classList.add('btnAddTodo')
-
+    btnAddTodo.appendChild(imgAdd)
 
     let divContainTodo = document.createElement('div')
     divContainTodo.classList.add('todoContainer')
 
     ContainerName.appendChild(h1)
     ContainerBtnAddTodo.appendChild(btnAddTodo)
-    container.innerHTML = ""
-    container.appendChild(ContainerName)
-    container.appendChild(divContainTodo)
-    container.appendChild(ContainerBtnAddTodo)
+    ContainerBtnAddTodo.appendChild(h3)
+    
+    let divContainAddTitle = document.createElement('div')
+    divContainAddTitle.classList.add('headerProject')
+    divContainAddTitle.classList.add(name)
+    
+    divContainAddTitle.appendChild(ContainerName)
+    divContainAddTitle.appendChild(ContainerBtnAddTodo)
 
-    const btnShowDialogTodo = document.querySelector('.btnAddTodo')
+    container.innerHTML = ""
+    container.appendChild(divContainAddTitle)
+    container.appendChild(divContainTodo)
+
+
+    getTodoFromStorage(name)
+
+
+    const btnShowDialogTodo = document.querySelector('.addTodo')
     btnShowDialogTodo.addEventListener('click' , ShowDialogTodo)
     
 }
