@@ -67,6 +67,7 @@ aside>details>p{
 .containerTodo{
     background-color:rgb(36, 102, 89);
     width: 80vw;
+    padding: 20px;
 }
 
 @media screen and (max-width:600px) {
