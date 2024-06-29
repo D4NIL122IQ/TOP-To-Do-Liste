@@ -65,6 +65,12 @@ class Todo{
             todoContainer.removeChild(btnDeletTodo.parentElement)
         })
 
+        let btnModif = document.createElement('button')
+        btnModif.classList.add('modifTodo')
+        btnModif.addEventListener('click',()=>{
+            // acces to todo
+        })
+
         divBtn.appendChild(btnDeletTodo)
 
         div.appendChild(isDo)  
