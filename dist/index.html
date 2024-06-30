@@ -63,8 +63,30 @@
     </dialog>
 
     <div class="containerTodo projectName">
-      <p class="">hello</p>
+
     </div>
+
+    <dialog class="dialogModifTodo">
+      <div class="btnClose">
+        <button type="button" class="closeModifTodo"></button>
+      </div>
+      <form method="dialog">
+        <label for="nameTodo">Name of todo</label>
+        <input type="text" name="nameTodo" id="nameModifTodo">
+        <label for="dateTodo">enter date</label>
+        <input type="date" name="dateTodo" id="dateModifTodo">
+        <label for="importance">Importance de la tache</label>
+        <div class="importance">
+        <input type="radio" name="importance" id="high" value="high" class="">
+        <label for="high">haute</label>
+        <input type="radio" name="importance" id="mid" value="mid" class="">
+        <label for="mid">moyenne</label>
+        <input type="radio" name="importance" id="low" value="low" class="">
+        <label for="low">basse</label>
+      </div>
+        <input type="submit" value="Enregistrer">
+      </form>
+    </dialog>
     <script src="./bundle.js"></script>
   </body>
 </html>
