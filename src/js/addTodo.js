@@ -6,7 +6,7 @@ const dialogTodo = document.querySelector('.dialogTodo')
 const btnCloseDialogTodo = document.querySelector('.closeAddTodo')
 const formDialog = document.querySelectorAll('form')
 
-
+const dialogModifTodo = document.querySelector('.dialogModifTodo')
 
 // pour recuperer les todo prensent dans le storage
 let todos =[]
@@ -14,10 +14,8 @@ let todos =[]
 ////// todoInlocaleStorage undefined
 function getTodoFromStorage(nomProject){
     const todoInLocalStorage = localStorage.getItem(nomProject)?.toString()
-    console.log(todoInLocalStorage)
     if(todoInLocalStorage){
         todos = JSON.parse(todoInLocalStorage)
-        console.log(todos)
         todos.forEach((todo)=>{
             const todoInstance = Todo.transformElementIntoInstance(todo)
             todoInstance.addTodoIntoContainer()
@@ -32,6 +30,7 @@ class Todo{
         this.importance = importance
         this.projectName = projectName
     }
+
 
     addTodoIntoContainer(){
         const todoContainer = document.querySelector('.todoContainer')
@@ -69,9 +68,30 @@ class Todo{
         btnModif.classList.add('modifTodo')
         btnModif.addEventListener('click',()=>{
             // acces to todo
+            dialogModifTodo.showModal()
+            formDialog[2].children[1].value = this.name
+            formDialog[2].children[3].value = this.date
+            switch (this.importance) {
+                case "high":
+                    formDialog[2].children[5].children[0].checked = true;
+                    break;
+                case "mid":
+                    formDialog[2].children[5].children[2].checked = true;
+                    break;
+                
+                case "low":
+                    formDialog[2].children[5].children[4].checked = true;
+                    break;
+            }
+            formDialog[2].children[6].addEventListener('click' , ()=>{
+                modifyTodoInfo(this)
+            })
         })
 
+
+
         divBtn.appendChild(btnDeletTodo)
+        divBtn.appendChild(btnModif)
 
         div.appendChild(isDo)  
         div.appendChild(title) 
@@ -98,6 +118,8 @@ class Todo{
     static transformElementIntoInstance(ele){
         return new Todo(ele.name, ele.importance,ele.date,ele.projectName)
     }
+
+
 }
 
 
@@ -114,12 +136,40 @@ formDialog[1].addEventListener('submit',()=>{
 
 
     let newTodo = new Todo(titleTodo, todoImport ,dateTodo , document.querySelector('.containerTodo').firstChild.classList[1])
-    newTodo.addTodoIntoContainer()
     todos.push(newTodo)
+    addArrayTodoIntoContainer()
     addTodoIntoLocalStorage()
     
     resetFormDialog(formDialog[1],dialogTodo)
 })
+
+function addArrayTodoIntoContainer(){
+    document.querySelector('.todoContainer').innerHTML = ""
+    todos.forEach((element)=>{
+        const todoInstance = Todo.transformElementIntoInstance(element)
+        todoInstance.addTodoIntoContainer()
+    })
+}
+
+
+function modifyTodoInfo(todo) {
+
+
+    const formInputs = new FormData(formDialog[2])
+    const titleTodo = formInputs.get("nameTodo")
+    const dateTodo =formInputs.get("dateTodo")
+    const todoImport = formInputs.get("importance")
+    let todoTemp = new Todo(titleTodo, todoImport ,dateTodo , document.querySelector('.containerTodo').firstChild.classList[1])
+
+    let index = todos.findIndex(element => element.name === todo.name && element.date === todo.date && element.importance === todo.importance);
+
+
+    todos[index] = todoTemp
+    addArrayTodoIntoContainer()
+    addTodoIntoLocalStorage()
+    
+ 
+}
 
 
 
