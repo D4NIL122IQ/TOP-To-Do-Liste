@@ -3,11 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>TO DO Liste</title>
   </head>
 
   <body>
-
+    <section>
     <div class="menuButton">
       <button>=</button>
     </div>
@@ -30,19 +31,24 @@
     </aside>
 
     <dialog class="dialogAddProject">
+      <div>
       <div class="btnClose">
-        <button type="button" class="closeAddProject"></button>
+        <button type="button" class="closeAddProject" id="BtnCloseDialog"></button>
       </div>
       <form method="dialog" class="formAddProject"> 
-        <label for="nameTheme">Name of personalized theme</label>
+        <label for="nameTheme">Nom du projet:</label>
         <input type="text" name="nameTheme" id="nameTheme" required>
         <input type="submit" value="Valider">
       </form>
+    </div>
+    <div>
+      <p>*ne pas laisser d'espace dans le nom du projet*</p>
+    </div>
     </dialog>
 
     <dialog class="dialogTodo">
       <div class="btnClose">
-        <button type="button" class="closeAddTodo"></button>
+        <button type="button" class="closeAddTodo" id="btnCloseDialog"></button>
       </div>
       <form method="dialog">
         <label for="nameTodo">Name of todo</label>
@@ -58,6 +64,7 @@
         <input type="radio" name="importance" id="low" value="low">
         <label for="low">basse</label>
       </div>
+        <textarea name="detailTodo" id="detailTodo" cols="15" rows="5" placeholder="Descriptionici:"></textarea>
         <input type="submit" value="Enregistrer">
       </form>
     </dialog>
@@ -68,7 +75,8 @@
 
     <dialog class="dialogModifTodo">
       <div class="btnClose">
-        <button type="button" class="closeModifTodo"></button>
+        <button type="button" class="closeModifTodo" id="BtnCloseDialog">
+        </button>
       </div>
       <form method="dialog">
         <label for="nameTodo">Name of todo</label>
@@ -77,16 +85,22 @@
         <input type="date" name="dateTodo" id="dateModifTodo">
         <label for="importance">Importance de la tache</label>
         <div class="importance">
-        <input type="radio" name="importance" id="high" value="high" class="">
+        <input type="radio" name="importance" id="high" value="high">
         <label for="high">haute</label>
-        <input type="radio" name="importance" id="mid" value="mid" class="">
+        <input type="radio" name="importance" id="mid" value="mid">
         <label for="mid">moyenne</label>
-        <input type="radio" name="importance" id="low" value="low" class="">
+        <input type="radio" name="importance" id="low" value="low">
         <label for="low">basse</label>
       </div>
-        <input type="submit" value="Enregistrer">
+      <textarea name="detail" id="detail" cols="30" rows="10"></textarea>
+        <input type="submit" value="Modifier">
       </form>
     </dialog>
+  </section>
+    <footer>
+      <a href="http://github.com/D4NIL122IQ"><i class="fa fa-github" style="font-size:25px"></i> BY DANIL GDJ</a>
+  </footer>
     <script src="./bundle.js"></script>
+
   </body>
 </html>
