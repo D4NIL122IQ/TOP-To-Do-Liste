@@ -1,5 +1,5 @@
 import '../css/styleAddProject.css'
-import  {ShowDialogTodo , getTodoFromStorage} from'./addTodo.js'
+import  {ShowDialogTodo , getTodoFromStorage} from './addTodo.js'
 import {removeAllEventListeners} from '../index.js'
 import imgAddTodo from '../assets/addTodo.png'
 const addIntoDetails = document.querySelector('details')
@@ -7,6 +7,11 @@ const btnCloseAddProject = document.querySelector('.btnClose')
 const allForm = document.querySelectorAll('form')
 const btnOpenAddProjectDialog = document.querySelector('.addProject')
 const dialogAddProject = document.querySelector('.dialogAddProject')
+
+
+
+
+
 
 
 //recuperer les project cree et stocker dans le localStorage
@@ -138,8 +143,8 @@ function setupProjectContainer(name){
     ContainerBtnAddTodo.classList.add('addTodo')
     let imgAdd = document.createElement('img')
     imgAdd.src = imgAddTodo
-    imgAdd.width =50
-    imgAdd.height = 50
+    imgAdd.width =45
+    imgAdd.height = 45
 
     let h3 = document.createElement('h3')
     h3.textContent ="add Todo"

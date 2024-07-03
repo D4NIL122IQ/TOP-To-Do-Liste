@@ -2,6 +2,18 @@ import './styleGeneral.css'
 
 import './js/addProjectManage.js'
 
+import imgClose from './assets/close.png'
+
+const imgcls = document.createElement('img')
+
+imgcls.src =imgClose
+imgcls.width = 30
+imgcls.height = 30
+
+document.querySelector('#BtnCloseDialog').appendChild(imgcls)
+document.querySelector('#btnCloseDialog').appendChild(imgcls)
+
+
 
 
 

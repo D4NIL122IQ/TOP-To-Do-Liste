@@ -1,6 +1,9 @@
 import '../css/styleAddTodo.css'
 import {removeAllEventListeners} from '../index.js'
-
+import imgDelete from '../assets/delete.png'
+import imgModif from '../assets/edit.png'
+import imgDo from '../assets/do.png'
+import imgNDo from '../assets/notdo.png'
 
 const dialogTodo = document.querySelector('.dialogTodo')
 const btnCloseDialogTodo = document.querySelector('.closeAddTodo')
@@ -24,20 +27,23 @@ function getTodoFromStorage(nomProject){
 }
 
 class Todo{
-    constructor(nameListe , importance ,date, projectName ){
+    constructor(nameListe , importance ,date, detail,projectName ){
         this.name = nameListe
         this.date = date
+        this.details = detail
         this.importance = importance
         this.projectName = projectName
+
     }
 
-
+    // creation d'une carte todo
     addTodoIntoContainer(){
         const todoContainer = document.querySelector('.todoContainer')
         let div = document.createElement('div')
         div.classList.add('cardTodo')
         div.classList.add(this.importance)
-        div.classList.add(this.name)
+        let index = this.name.indexOf(' ')
+        div.classList.add(this.name.slice(0, index))
 
         let title = document.createElement('h3')
         title.textContent = this.name
@@ -56,16 +62,27 @@ class Todo{
         let divBtn = document.createElement('div')
 
         let btnDeletTodo = document.createElement('button')
+        let imgsup = document.createElement('img')
+        imgsup.src = imgDelete
+        imgsup.width = 30
         btnDeletTodo.classList.add('deleteTodo')
-
+        btnDeletTodo.appendChild(imgsup)
+        
         btnDeletTodo.addEventListener('click' , ()=>{
 
-            deleteTodo(btnDeletTodo.parentElement.classList[2])
+            deleteTodo(this.name)
             todoContainer.removeChild(btnDeletTodo.parentElement)
         })
 
+
         let btnModif = document.createElement('button')
         btnModif.classList.add('modifTodo')
+        let imgedit = document.createElement('img')
+        imgedit.src = imgModif
+        imgedit.width = 30
+
+
+        btnModif.appendChild(imgedit)
         btnModif.addEventListener('click',()=>{
             // acces to todo
             dialogModifTodo.showModal()
@@ -83,13 +100,15 @@ class Todo{
                     formDialog[2].children[5].children[4].checked = true;
                     break;
             }
-            formDialog[2].children[6].addEventListener('click' , ()=>{
+            formDialog[2].children[6].value = this.details
+            formDialog[2].children[7].addEventListener('click' , ()=>{
                 modifyTodoInfo(this)
             })
+            console.log(this.details)
         })
 
 
-
+        divBtn.classList.add('divBtn')
         divBtn.appendChild(btnDeletTodo)
         divBtn.appendChild(btnModif)
 
@@ -97,7 +116,6 @@ class Todo{
         div.appendChild(title) 
         div.appendChild(date) 
         div.appendChild(importanc)  
-        div.appendChild(btnDeletTodo)
         div.appendChild(divBtn)
         todoContainer.appendChild(div)
 
@@ -108,8 +126,10 @@ class Todo{
             isdo.addEventListener('click',()=>{
                 if (isdo.classList.contains('no')) {
                     isdo.classList.replace('no','yes')
+ 
                 } else {
                     isdo.classList.replace('yes','no')
+   
                 }
             })
         })
@@ -132,10 +152,10 @@ formDialog[1].addEventListener('submit',()=>{
     const titleTodo = formInputs.get("nameTodo")
     const dateTodo =formInputs.get("dateTodo")
     const todoImport = formInputs.get("importance")
+    const detail = formInputs.get("detailTodo")
 
 
-
-    let newTodo = new Todo(titleTodo, todoImport ,dateTodo , document.querySelector('.containerTodo').firstChild.classList[1])
+    let newTodo = new Todo(titleTodo, todoImport ,dateTodo ,detail,document.querySelector('.containerTodo').firstChild.classList[1])
     todos.push(newTodo)
     addArrayTodoIntoContainer()
     addTodoIntoLocalStorage()
@@ -159,7 +179,9 @@ function modifyTodoInfo(todo) {
     const titleTodo = formInputs.get("nameTodo")
     const dateTodo =formInputs.get("dateTodo")
     const todoImport = formInputs.get("importance")
-    let todoTemp = new Todo(titleTodo, todoImport ,dateTodo , document.querySelector('.containerTodo').firstChild.classList[1])
+    const detailTodo =  formInputs.get("detail")
+
+    let todoTemp = new Todo(titleTodo, todoImport ,dateTodo , detailTodo ,document.querySelector('.containerTodo').firstChild.classList[1])
 
     let index = todos.findIndex(element => element.name === todo.name && element.date === todo.date && element.importance === todo.importance);
 
