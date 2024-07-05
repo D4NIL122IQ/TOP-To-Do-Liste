@@ -52,16 +52,16 @@
       </div>
       <form method="dialog">
         <label for="nameTodo">Name of todo</label>
-        <input type="text" name="nameTodo" id="nameTodo">
+        <input type="text" name="nameTodo" id="nameTodo" required>
         <label for="dateTodo">enter date</label>
-        <input type="date" name="dateTodo" id="dateTodo">
+        <input type="date" name="dateTodo" id="dateTodo" required>
         <label for="importance">Importance de la tache</label>
         <div class="importance">
-        <input type="radio" name="importance" id="high" value="high">
+        <input type="radio" name="importance" id="high" value="high" >
         <label for="high">haute</label>
         <input type="radio" name="importance" id="mid" value="mid">
         <label for="mid">moyenne</label>
-        <input type="radio" name="importance" id="low" value="low">
+        <input type="radio" name="importance" id="low" value="low" checked>
         <label for="low">basse</label>
       </div>
         <textarea name="detailTodo" id="detailTodo" cols="15" rows="5" placeholder="Descriptionici:"></textarea>
@@ -75,7 +75,7 @@
 
     <dialog class="dialogModifTodo">
       <div class="btnClose">
-        <button type="button" class="closeModifTodo" id="BtnCloseDialog">
+        <button type="button" class="closeModifTodo" id="BTnCloseDialog">
         </button>
       </div>
       <form method="dialog">
@@ -95,6 +95,28 @@
       <textarea name="detail" id="detail" cols="30" rows="10"></textarea>
         <input type="submit" value="Modifier">
       </form>
+    </dialog>
+
+    <dialog class="dialogShowDetail">
+    <form method="dialog">
+      <label for="nameTodo">TITLE :</label>
+      <input type="text" name="nameTodo" id="nameModifTodo"  readonly>
+      <label for="dateTodo">enter date</label>
+      <input type="date" name="dateTodo" id="dateModifTodo" readonly>
+      <label for="importance">Importance de la tache</label>
+      <div class="importance">
+      <input type="radio" name="importance" id="high" value="high" disabled >
+      <label for="high">haute</label>
+      <input type="radio" name="importance" id="mid" value="mid" disabled checked>
+      <label for="mid">moyenne</label>
+      <input type="radio" name="importance" id="low" value="low" disabled >
+      <label for="low">basse</label>
+    </div>
+    <textarea name="detail" id="detail" cols="30" rows="10" readonly></textarea>
+      <input type="submit" value="Fermer">
+    </form>
+    
+
     </dialog>
   </section>
     <footer>
