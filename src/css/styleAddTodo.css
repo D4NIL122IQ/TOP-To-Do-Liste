@@ -58,8 +58,6 @@
 .closeAddTodo:hover{
     box-shadow: 0px 0px 10px rgb(233, 124, 124);
 }
-/* sepation  */
-
 
 .headerProject{
     height: 60px;
@@ -91,7 +89,7 @@
 
 .cardTodo{
     width: 300px;
-    height: 250px;
+    height: 150px;
     border-radius: 0px 30px 30px 0px;
     padding: 5px;
     border: 0px solid black;
@@ -103,11 +101,14 @@
     border-width: 10px;
     display: flex;
     flex-direction: column;
-    align-items: end;
+    justify-content: space-between;
 }
 
 .cardTodo > .divBtn{
+    width: 100%;
+    margin-right: 30px;
     display: flex;
+    flex-direction: row-reverse;
     justify-content: end;
 }
 
@@ -117,41 +118,43 @@
     border: 0px solid transparent;
     background-color: transparent;
 }
+.cardTodo > .divBtn>button:hover{
+    box-shadow: 0px 0px 15px grey;
+}
 
 .isdo {
-    width: 20px;
+    width: 30px;
     height: 20px;
+    margin-left: 230px;
     display: flex;
-    justify-content: center;
-
-
+    justify-content: end;
 }
 
 
 .no{
     background-image: url(../assets/notdo.png);
-    background-position: center;
+    background-position:right;
     background-repeat: no-repeat;
     background-size: contain;
 }
 .yes {
     background-image: url(../assets/do.png);
-    background-position: center;
+    background-position: right;
     background-repeat: no-repeat;
     background-size: contain;
 }
 
 
 .low{
-    border-color: green;
+    border-color: #5da283;
 }
 .mid{
-    border-color: orange;
+    border-color: #fa8969;
     
 }
 
 .high{
-    border-color: red;
+    border-color: #ff5f63;
 }
 
 
@@ -167,3 +170,83 @@
     box-shadow: 0px 0px 20px red;
     border-width: 5px;
 }
+
+.dialogModifTodo{
+    width: 500px;
+    height: 400px;
+    margin: 150px auto;
+    padding: 20px;
+    border-radius: 20px;
+}
+.dialogModifTodo>form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 300px;
+    margin: 0px auto;
+}
+
+.dialogModifTodo>form>label{
+    font-weight: bold;
+}
+
+.dialogModifTodo>form>input{
+    width: 250px;
+    height: 20px;
+    margin: 0px auto;
+    border-radius: 4px;
+    border: 1px solid black;
+}
+
+.dialogModifTodo>form>input[type="submit"]:hover{
+    background-color: rgb(37, 82, 37);
+    color: white;
+    box-shadow: 0px 0px 10px rgb(38, 96, 38);
+}
+
+.dialogModifTodo>button{
+    display: flex;
+    justify-content: end;
+}
+.dialogTodo>button{
+    display: flex;
+    justify-content: end;
+}
+
+.dialogShowDetail{
+    width: 500px;
+    height: 400px;
+    margin: 150px auto;
+    padding: 20px;
+    border-radius: 20px;
+}
+.dialogShowDetail>form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 300px;
+    margin: 0px auto;
+}
+
+.dialogShowDetail>form>label{
+    font-weight: bold;
+}
+
+.dialogShowDetail>form>input{
+    width: 250px;
+    height: 20px;
+    margin: 0px auto;
+    border-radius: 4px;
+    border: 1px solid black;
+}
+
+.dialogShowDetail>form>input[type="submit"]:hover{
+    background-color: rgb(37, 82, 37);
+    color: white;
+    box-shadow: 0px 0px 10px rgb(38, 96, 38);
+}
+
+.dialogShowDetail>button{
+    display: flex;
+    justify-content: end}
+   
