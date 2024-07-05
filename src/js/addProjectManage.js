@@ -2,6 +2,7 @@ import '../css/styleAddProject.css'
 import  {ShowDialogTodo , getTodoFromStorage} from './addTodo.js'
 import {removeAllEventListeners} from '../index.js'
 import imgAddTodo from '../assets/addTodo.png'
+import imgClose from '../assets/close.png'
 const addIntoDetails = document.querySelector('details')
 const btnCloseAddProject = document.querySelector('.btnClose')
 const allForm = document.querySelectorAll('form')
@@ -10,6 +11,15 @@ const dialogAddProject = document.querySelector('.dialogAddProject')
 
 
 
+
+const imgcls = document.createElement('img')
+
+imgcls.src =imgClose
+imgcls.width = 30
+imgcls.height = 30
+
+
+document.querySelector('#BtnCloseDialog').appendChild(imgcls)
 
 
 

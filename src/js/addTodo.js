@@ -4,12 +4,15 @@ import imgDelete from '../assets/delete.png'
 import imgModif from '../assets/edit.png'
 import imgDetail from '../assets/detail.png'
 
+
 const dialogTodo = document.querySelector('.dialogTodo')
 const btnCloseDialogTodo = document.querySelector('.closeAddTodo')
 const formDialog = document.querySelectorAll('form')
 
 const dialogModifTodo = document.querySelector('.dialogModifTodo')
 const dialogShowDetait = document.querySelector('.dialogShowDetail')
+
+
 
 // pour recuperer les todo prensent dans le storage
 let todos =[]
@@ -90,23 +93,8 @@ class Todo{
         btnModif.addEventListener('click',()=>{
             // acces to todo
             dialogModifTodo.showModal()
-            formDialog[2].children[1].value = this.name
-            formDialog[2].children[3].value = this.date
-            switch (this.importance) {
-                case "high":
-                    formDialog[2].children[5].children[0].checked = true;
-                    break;
-                case "mid":
-                    formDialog[2].children[5].children[2].checked = true;
-                    break;
-                
-                case "low":
-                    formDialog[2].children[5].children[4].checked = true;
-                    break;
-            }
-            formDialog[2].children[6].value = this.details
-            console.log(formDialog[2].children[6])
-            console.log(this.details)
+            setupFormInDialog(2,this)
+            
             formDialog[2].children[7].addEventListener('click' , ()=>{
                 modifyTodoInfo(this)
             })
@@ -121,6 +109,10 @@ class Todo{
         btnDetail.appendChild(imgdetail)
         btnDetail.addEventListener('click' , ()=>{
             dialogShowDetait.showModal()
+            setupFormInDialog(3,this)
+            formDialog[3].children[7].addEventListener('click' , ()=>{
+                dialogShowDetait.close()
+            })
         })
 
         let divBtn = document.createElement('div')
@@ -187,6 +179,24 @@ function addArrayTodoIntoContainer(){
     })
 }
 
+
+function setupFormInDialog(index , todo) {
+    formDialog[index].children[1].value = todo.name
+    formDialog[index].children[3].value = todo.date
+    switch (todo.importance) {
+        case "high":
+            formDialog[index].children[5].children[0].checked = true;
+            break;
+        case "mid":
+            formDialog[index].children[5].children[2].checked = true;
+            break;
+                
+        case "low":
+            formDialog[index].children[5].children[4].checked = true;
+            break;
+    }
+    formDialog[index].children[6].value = todo.details
+}
 
 function modifyTodoInfo(todo) {
 

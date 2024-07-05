@@ -10,7 +10,7 @@ imgcls.src =imgClose
 imgcls.width = 30
 imgcls.height = 30
 
-document.querySelector('#BtnCloseDialog').appendChild(imgcls)
+
 document.querySelector('#btnCloseDialog').appendChild(imgcls)
 
 
