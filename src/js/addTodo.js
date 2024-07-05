@@ -2,14 +2,14 @@ import '../css/styleAddTodo.css'
 import {removeAllEventListeners} from '../index.js'
 import imgDelete from '../assets/delete.png'
 import imgModif from '../assets/edit.png'
-import imgDo from '../assets/do.png'
-import imgNDo from '../assets/notdo.png'
+import imgDetail from '../assets/detail.png'
 
 const dialogTodo = document.querySelector('.dialogTodo')
 const btnCloseDialogTodo = document.querySelector('.closeAddTodo')
 const formDialog = document.querySelectorAll('form')
 
 const dialogModifTodo = document.querySelector('.dialogModifTodo')
+const dialogShowDetait = document.querySelector('.dialogShowDetail')
 
 // pour recuperer les todo prensent dans le storage
 let todos =[]
@@ -27,11 +27,12 @@ function getTodoFromStorage(nomProject){
 }
 
 class Todo{
-    constructor(nameListe , importance ,date, detail,projectName ){
+    constructor(nameListe , importance ,date, detail,isdo,projectName ){
         this.name = nameListe
         this.date = date
         this.details = detail
         this.importance = importance
+        this.do = isdo
         this.projectName = projectName
 
     }
@@ -46,10 +47,10 @@ class Todo{
         div.classList.add(this.name.slice(0, index))
 
         let title = document.createElement('h3')
-        title.textContent = this.name
+        title.textContent = "Nom todo : "+this.name
 
         let date = document.createElement('p')
-        date.textContent = String(this.date)
+        date.textContent = "Date prevu : "+String(this.date)
 
         let importanc = document.createElement('btn')
         importanc.classList.add(this.importance)
@@ -57,9 +58,12 @@ class Todo{
         
         let isDo = document.createElement('div')
         isDo.classList.add('isdo')
-        isDo.classList.add('no')
+        if (this.do) {
+            isDo.classList.add('yes')
+        } else {
+            isDo.classList.add('no')
+        }
 
-        let divBtn = document.createElement('div')
 
         let btnDeletTodo = document.createElement('button')
         let imgsup = document.createElement('img')
@@ -71,7 +75,7 @@ class Todo{
         btnDeletTodo.addEventListener('click' , ()=>{
 
             deleteTodo(this.name)
-            todoContainer.removeChild(btnDeletTodo.parentElement)
+            todoContainer.removeChild(btnDeletTodo.parentElement.parentElement)
         })
 
 
@@ -101,17 +105,30 @@ class Todo{
                     break;
             }
             formDialog[2].children[6].value = this.details
+            console.log(formDialog[2].children[6])
+            console.log(this.details)
             formDialog[2].children[7].addEventListener('click' , ()=>{
                 modifyTodoInfo(this)
             })
-            console.log(this.details)
+            
         })
 
+        let btnDetail = document.createElement('button')
+        btnDetail.classList.add('showDetail')
+        let imgdetail = document.createElement('img')
+        imgdetail.src = imgDetail
+        imgdetail.width = 30
+        btnDetail.appendChild(imgdetail)
+        btnDetail.addEventListener('click' , ()=>{
+            dialogShowDetait.showModal()
+        })
 
+        let divBtn = document.createElement('div')
         divBtn.classList.add('divBtn')
         divBtn.appendChild(btnDeletTodo)
         divBtn.appendChild(btnModif)
-
+        divBtn.appendChild(btnDetail)
+        
         div.appendChild(isDo)  
         div.appendChild(title) 
         div.appendChild(date) 
@@ -126,17 +143,17 @@ class Todo{
             isdo.addEventListener('click',()=>{
                 if (isdo.classList.contains('no')) {
                     isdo.classList.replace('no','yes')
- 
+                    updateArrayTodo(this.name)
                 } else {
                     isdo.classList.replace('yes','no')
-   
+                    updateArrayTodo(this.name)
                 }
             })
         })
     }
 
     static transformElementIntoInstance(ele){
-        return new Todo(ele.name, ele.importance,ele.date,ele.projectName)
+        return new Todo(ele.name, ele.importance,ele.date,ele.details,ele.do,ele.projectName)
     }
 
 
@@ -154,12 +171,11 @@ formDialog[1].addEventListener('submit',()=>{
     const todoImport = formInputs.get("importance")
     const detail = formInputs.get("detailTodo")
 
-
-    let newTodo = new Todo(titleTodo, todoImport ,dateTodo ,detail,document.querySelector('.containerTodo').firstChild.classList[1])
+    console.log(detail)
+    let newTodo = new Todo(titleTodo, todoImport ,dateTodo ,detail,false , document.querySelector('.containerTodo').firstChild.classList[1])
     todos.push(newTodo)
     addArrayTodoIntoContainer()
     addTodoIntoLocalStorage()
-    
     resetFormDialog(formDialog[1],dialogTodo)
 })
 
@@ -189,10 +205,14 @@ function modifyTodoInfo(todo) {
     todos[index] = todoTemp
     addArrayTodoIntoContainer()
     addTodoIntoLocalStorage()
-    
- 
 }
 
+
+function updateArrayTodo(title) {
+    let index = todos.findIndex(element => element.name === title );
+    todos[index].do = !todos[index].do
+    addTodoIntoLocalStorage()
+}
 
 
 function deleteTodo(nameTodo){
@@ -213,6 +233,5 @@ function resetFormDialog(fo,dia){
     fo.reset()
     dia.close()
 }
-
 
 export{ShowDialogTodo , getTodoFromStorage}
