@@ -84,3 +84,21 @@
 .brnDeletProject:hover{
     box-shadow: 0px 0px 10px rgb(233, 124, 124);
 }
+
+@media screen and (max-width:600px) {
+    .dialogAddProject{
+        width: 400px;
+    }
+    .dialogAddProject> div>form{
+        width: 300px;
+    }
+    .dialogAddProject > div>form>input{
+        width: 180px;
+        margin-left: 20px;
+    }
+    .dialogAddProject > div>form>input[type="submit"]{
+        width: 100px;
+        margin: 15px auto;
+        height: 25px;
+    }
+}
