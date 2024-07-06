@@ -248,5 +248,35 @@
 
 .dialogShowDetail>button{
     display: flex;
-    justify-content: end}
+    justify-content: end
+}
+
+@media screen and (max-width:600px) {
+    .todoContainer{
+        margin-top: 10px;
+    }
+    .headerProject{
+        font-size:medium;
+        align-items: center;
+    }
+    .addTodo>h3{
+        display: none;
+    }
+    
+    .cardTodo{ 
+        border-radius: 0px 20px 30px 0px;
+    }
+    .dialogTodo{
+        width: 350px;
+    }
+    .dialogTodo>form{
+        width: 330px;
+    }
+    .dialogTodo>form>input{
+        margin-left: 0;
+    }
+    .dialogTodo>form>textarea{
+        width: 200px;
+    }
+}
    
