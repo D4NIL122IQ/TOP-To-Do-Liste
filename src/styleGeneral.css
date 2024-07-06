@@ -14,7 +14,6 @@ section{
 
 aside{
     width: 15vw;
-
     padding: 20px;
     gap: 10px;
     background-color: #e2e2e2;
@@ -105,11 +104,34 @@ footer>a{
 
 
 @media screen and (max-width:600px) {
+    section{
+        flex-direction: column;
+    }
     aside{
         display: none;
+        width: 100vw;
+        height: 200px;
+        overflow-y: auto;
     }
     .menuButton{
-        display: inline;
+        height: 30px;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        padding: 1px 13px 1px 20px;
+        background-color: #e2e2e2;
 
     }
+    .menuButton>button{
+        width: 15px;
+        height: 20px;
+        border-radius: 2px;
+        border: 1px solid black;
+        margin-right: 5px;
+    }
+    .containerTodo{
+        width: 100vw;
+        height: 100vh;
+    }
+    
 }
